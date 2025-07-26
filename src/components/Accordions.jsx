@@ -33,17 +33,23 @@ const accordionData = [
 ];
 
 function Accordions() {
-  const [activeID, setActiveID] = useState(null);
+  const [data, setdata] = useState(accordionData);
+
+  function toggleAccordion(id) {
+    setdata((prevdata) =>
+      prevdata.map((item) =>
+        item.id === id ? { ...item, isOpen: !item.isOpen } : item
+      )
+    );
+  }
 
   return (
     <div className="accordions">
-      {accordionData.map((data) => (
+      {data.map((item) => (
         <Accordion
-          key={data.id}
-          data={data}
-          setActiveID={setActiveID}
-          activeID={activeID}
-          id={data.id}
+          item={item}
+          key={item.id}
+          toggleAccordion={() => toggleAccordion(item.id)}
         />
       ))}
     </div>

@@ -57,6 +57,10 @@ body {
   font-weight: 500;
 }
 
+.toggle {
+  cursor: pointer;
+}
+
 /* =====================Contents=================== */
 
 .title {
@@ -83,6 +87,11 @@ body {
 .accordion.active .toggle,
 .accordion.active .title {
   color: #007681;
+}
+
+.accordion.active .toggle,
+.accordion.active .title {
+  cursor: pointer;
 }
 
 .accordion.active .line {

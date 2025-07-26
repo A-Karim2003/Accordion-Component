@@ -1,18 +1,17 @@
-function Accordion({ data, activeID, setActiveID, id }) {
-  const isActive = activeID === id;
-
-  function handleActiveIds() {}
+function Accordion({ item, toggleAccordion }) {
   return (
-    <div className={`accordion ${isActive ? "active" : ""}`}>
+    <div className={`accordion ${item.isOpen ? "active" : ""}`}>
       <div className="line"></div>
-      <div className="number">{String(data.number).padStart(2, "0")}</div>
+      <div className="number">{String(item.number).padStart(2, "0")}</div>
       <div className="content">
-        <h3 className="title" onClick={() => setActiveID(id)}>
-          {data.title}
+        <h3 className="title" onClick={toggleAccordion}>
+          {item.title}
         </h3>
-        <p className="text">{data.text}</p>
+        <p className="text">{item.text}</p>
       </div>
-      <div className="toggle">{isActive ? "-" : "+"}</div>
+      <div className="toggle" onClick={toggleAccordion}>
+        {item.isOpen ? "-" : "+"}
+      </div>
     </div>
   );
 }
