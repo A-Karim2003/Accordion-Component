@@ -36,6 +36,9 @@ function Accordions() {
   const [data, setdata] = useState(accordionData);
 
   function toggleAccordion(id) {
+    // The reason id is passed as a param is because the
+    // event that triggers this function will know what
+    // accordion triggered it and what object it belongs to.
     setdata((prevdata) =>
       prevdata.map((item) =>
         item.id === id ? { ...item, isOpen: !item.isOpen } : item
@@ -45,12 +48,17 @@ function Accordions() {
 
   return (
     <div className="accordions">
-      {data.map((item) => (
+      {data.map((item, i) => (
         <Accordion
           item={item}
           key={item.id}
           toggleAccordion={() => toggleAccordion(item.id)}
-        />
+        >
+          <h3 className="title" onClick={() => toggleAccordion(i + 1)}>
+            {item.title}
+          </h3>
+          <p className="text">{item.text}</p>
+        </Accordion>
       ))}
     </div>
   );
